@@ -16,6 +16,7 @@ services:
     restart: unless-stopped
     ports:
       - "9000:9000"
+      - "8888"
     environment:
       JAVA_OPTS: "-javaagent:/opt/pinot/etc/jmx_prometheus_javaagent/jmx_prometheus_javaagent-0.12.0.jar=8888:/opt/pinot/etc/jmx_prometheus_javaagent/configs/pinot.yml -Dplugins.dir=/opt/pinot/plugins -Xms1G -Xmx4G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xloggc:gc-pinot-controller.log"
     depends_on:
@@ -27,6 +28,7 @@ services:
     container_name: "pinot-broker"
     ports:
       - "8099:8099"
+      - "8888"
     environment:
       JAVA_OPTS: "-javaagent:/opt/pinot/etc/jmx_prometheus_javaagent/jmx_prometheus_javaagent-0.12.0.jar=8888:/opt/pinot/etc/jmx_prometheus_javaagent/configs/pinot.yml -Dplugins.dir=/opt/pinot/plugins -Xms4G -Xmx4G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xloggc:gc-pinot-broker.log"
     depends_on:
@@ -38,6 +40,7 @@ services:
     container_name: "pinot-server"
     ports:
       - "8098:8098"
+      - "8888"
     environment:
       JAVA_OPTS: "-javaagent:/opt/pinot/etc/jmx_prometheus_javaagent/jmx_prometheus_javaagent-0.12.0.jar=8888:/opt/pinot/etc/jmx_prometheus_javaagent/configs/pinot.yml -Dplugins.dir=/opt/pinot/plugins -Xms4G -Xmx16G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xloggc:gc-pinot-server.log"
     depends_on:
