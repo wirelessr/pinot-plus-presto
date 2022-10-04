@@ -65,5 +65,12 @@ services:
     environment:
       GF_SERVER_ROOT_URL: https://localhost:3000
       GF_SECURITY_ADMIN_PASSWORD: password
+
+  presto-coordinator:
+    image: apachepinot/pinot-presto
+    restart: unless-stopped
+    ports:
+    - "18080:8080"
+
 volumes:
   monitoring-prometheus-data-1:
